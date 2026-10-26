@@ -1,0 +1,11 @@
+path: /root/autodl-tmp/surgical-yolo
+train: images/train
+val: images/val
+
+names:
+  0: 手术刀
+  1: 直分离钳
+  2: 直梅奥剪
+  3: 弯梅奥剪
+
+nc: 4

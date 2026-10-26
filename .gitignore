@@ -1,0 +1,29 @@
+# 个人材料，不上传
+resume/
+*.docx
+*.pdf
+
+# 一次性排查脚本（README 有说明）
+probe*.sh
+check_*.sh
+diag_*.sh
+inspect_new.sh
+fix_env.sh
+setup_env.sh
+launch_train.sh
+launch_fast.sh
+launch_b64.sh
+
+# Python / 系统
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.ipynb_checkpoints/
+
+# 编辑器 / 系统
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+desktop.ini
