@@ -52,7 +52,7 @@ http://<服务器IP>/demo/?demo=1
 
 ## 文件位置
 
-AutoDL（`ssh autodl`，`connect.REGION.seetacloud.com:PORT`，root）：
+AutoDL（`ssh autodl`，即 `connect.<region>.seetacloud.com:<端口>`，root，端口见控制台登录指令）：
 
 | 路径 | 说明 |
 |---|---|
