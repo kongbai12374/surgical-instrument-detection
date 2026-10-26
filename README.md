@@ -51,7 +51,7 @@ yolo detect val model=best_cn.pt data=data_cn.yaml
 ## 项目结构
 
 ```
-zero/
+.
 ├── best_cn.pt               # 训练好的权重，类别名为中文（推荐分发）
 ├── best.pt                  # 同一权重的英文标签版
 ├── data_cn.yaml             # 中文类别名的数据集配置
@@ -61,10 +61,11 @@ zero/
 ├── detect_cn2.py            # 分层抽样检测 + 预测 vs 标注核对 + 拼图
 ├── setup_env2.sh            # 一键装 CUDA 12.8 环境（5090 必需）
 ├── install_font.sh          # 装中文字体并接进 ultralytics / matplotlib
+├── imgdemo/                 # 网页演示（推理服务 + 前端 + 隧道）
 └── results/                 # 曲线、混淆矩阵、检测示例
 ```
 
-其余 `probe*.sh` / `check_*.sh` / `diag_*.sh` 是排查过程留下的一次性脚本，可删。
+训练过程中用到的 `probe*.sh` / `check_*.sh` / `diag_*.sh` 等一次性排查脚本已通过 `.gitignore` 排除，未随仓库发布。
 
 ## 数据集
 
