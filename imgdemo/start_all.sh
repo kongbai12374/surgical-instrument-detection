@@ -22,10 +22,12 @@ fi
 
 if pgrep -f "bash tunnel.sh" >/dev/null; then
   echo "tunnel: already running"
+elif [ -z "${TUNNEL_HOST}" ]; then
+  echo "tunnel: 跳过（未设置 TUNNEL_HOST；需要时 export TUNNEL_HOST=<服务器IP> 后重跑）"
 else
   setsid nohup bash tunnel.sh >>/root/imgdemo-worker/tunnel.log 2>&1 &
   sleep 3
-  echo "tunnel: started"
+  echo "tunnel: started -> ${TUNNEL_HOST}"
 fi
 
 echo "--- status ---"

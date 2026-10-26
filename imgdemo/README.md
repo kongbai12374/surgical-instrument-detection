@@ -6,13 +6,13 @@
 ## 地址
 
 ```
-http://SERVER_IP/demo/
+http://<服务器IP>/demo/
 ```
 
 免操作演示（自动载入“四件同框”示例并出结果）：
 
 ```
-http://SERVER_IP/demo/?demo=1
+http://<服务器IP>/demo/?demo=1
 ```
 
 ## 能检测几类
@@ -35,7 +35,7 @@ http://SERVER_IP/demo/?demo=1
 ## 架构
 
 ```
-浏览器 ──► 阿里云 SERVER_IP:80
+浏览器 ──► 反向代理服务器 <服务器IP>:80
                 │  /demo/          → /opt/imgdemo/static/  (静态页)
                 │  /demo/samples/  → /opt/imgdemo/samples/ (示例图)
                 │  /demo/api/      → 127.0.0.1:8020
@@ -63,7 +63,7 @@ AutoDL（`ssh autodl`，`connect.REGION.seetacloud.com:PORT`，root）：
 | `/root/imgdemo-worker/worker.log`、`tunnel.log` | 日志 |
 | `/root/autodl-tmp/envs/yolo/bin/python` | 运行环境（torch 2.8.0+cu128，ultralytics 8.3.13） |
 
-阿里云（`ssh SERVER_IP`，admin）：
+阿里云（`ssh admin@<服务器IP>`）：
 
 | 路径 | 说明 |
 |---|---|
@@ -92,7 +92,8 @@ curl -s -o /dev/null -w '%{http_code}\n' http://127.0.0.1/demo/
 
 - **AutoDL 实例关机 / 释放后，网页会报 502**（前端已提示“推理实例暂时离线”）。
   演示前先确认实例在运行，并执行一次 `start_all.sh`。
-- 隧道依赖 AutoDL 能出网连到 `SERVER_IP:22`；若阿里云换了 IP 或改端口，要同步改 `tunnel.sh`。
+- 隧道依赖 AutoDL 能出网连到 `<服务器IP>:22`；服务器地址不写死在脚本里，由 `TUNNEL_HOST` 环境变量传入
+  （`export TUNNEL_HOST=1.2.3.4; bash start_all.sh`），换 IP 或改端口只需改这个变量。
 - 推理固定跑在**单线程**上（`ThreadPoolExecutor(max_workers=1)`）。这是刻意的：
   PyTorch 每个新线程的 CUDA 流首次推理要重付约 2 s，串行化后每张都稳定在 10–35 ms。
   代价是不支持并发，演示场景够用。
